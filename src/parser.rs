@@ -317,6 +317,7 @@ pub fn parse_lcov(
     Ok(results)
 }
 
+#[allow(dead_code)]
 #[derive(Debug, Deserialize)]
 struct GcovJson {
     format_version: String,
@@ -335,6 +336,7 @@ struct GcovFile {
     lines: Vec<GcovLine>,
 }
 
+#[allow(dead_code)]
 #[derive(Debug, Deserialize)]
 struct GcovLine {
     line_number: u32,
@@ -344,6 +346,7 @@ struct GcovLine {
     branches: Vec<GcovBr>,
 }
 
+#[allow(dead_code)]
 #[derive(Debug, Deserialize)]
 struct GcovBr {
     count: u64,
@@ -351,6 +354,7 @@ struct GcovBr {
     fallthrough: bool,
 }
 
+#[allow(dead_code)]
 #[derive(Debug, Deserialize)]
 struct GcovFunction {
     name: String,

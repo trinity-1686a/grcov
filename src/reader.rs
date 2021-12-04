@@ -86,6 +86,7 @@ pub struct Gcno {
     ident_to_fun: FxHashMap<u32, usize>,
 }
 
+#[allow(dead_code)]
 #[derive(Debug)]
 struct GcovFunction {
     identifier: u32,
