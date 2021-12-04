@@ -3,6 +3,7 @@ use rayon::prelude::*;
 use rustc_hash::FxHashMap;
 use serde_json::Value;
 use std::collections::hash_map;
+use std::collections::HashSet;
 use std::fs;
 use std::io;
 use std::path::{Component, Path, PathBuf};
@@ -235,6 +236,7 @@ pub fn rewrite_paths(
     to_keep_dirs: &[impl AsRef<str>],
     filter_option: Option<bool>,
     file_filter: crate::FileFilter,
+    filter_duplicates: bool,
 ) -> CovResultIter {
     let to_ignore_globset = to_globset(to_ignore_dirs);
     let to_keep_globset = to_globset(to_keep_dirs);
@@ -337,6 +339,12 @@ pub fn rewrite_paths(
                 }
                 None => (),
             };
+
+            if filter_duplicates {
+                let mut seen = HashSet::new();
+                result.functions.retain(|_, v| seen.insert(v.start));
+
+            }
 
             Some((abs_path, rel_path, result))
         });

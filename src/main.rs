@@ -398,6 +398,7 @@ fn main() {
         &opt.keep_dir,
         filter_option,
         file_filter,
+        demangle,
     );
 
     match opt.output_type {
